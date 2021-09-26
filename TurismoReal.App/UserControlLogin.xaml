@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="TurismoReal.App.UserControlLogin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TurismoReal.App"
+             mc:Ignorable="d"  
+             x:Name="UCLogin"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <Grid x:Name="ContentLogin">
+        <!--Background="#3F59D9"-->
+        <!--<Grid.Background>
+            <ImageBrush ImageSource="Recursos/background_4.png" />
+        </Grid.Background>-->
+        <StackPanel Margin="150,70,150,20" Background="Transparent" Height="408">
+                <StackPanel Height="72">
+                    <materialDesign:PackIcon                             Kind="Hotel"                             Foreground="white" 
+                            Margin="0,20,0,0"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Stretch"
+                            Height="48" 
+                            Width="78"/>
+                </StackPanel>
+
+                <StackPanel Height="72">
+                    <TextBlock Margin="0,10,0,8" 
+                               Height="30"
+                               Foreground="white"
+                               FontSize="30"
+                               TextAlignment="Center"                               
+                               FontWeight="Bold"
+                               FontFamily="Japanese"
+                               FontStyle="Italic">
+                               Bienvenid@
+                    </TextBlock>
+                    <TextBlock Height="20"
+                               Foreground="white"
+                               FontWeight="SemiBold"
+                               FontSize="18"
+                               TextAlignment="Center"                              
+                               HorizontalAlignment="Center"
+                               FontFamily="Japanese"
+                               FontStyle="Italic">
+                        Ingrese a la APP Turismo Real
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"                     
+                    Background="Transparent" 
+                    Margin="30,10,30,0">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon                             Kind="Account"                             Foreground="white"                             VerticalAlignment="Bottom"                             Margin="0,18"                             Width="20"                             Height="17"/>
+                        <TextBox
+                        Cursor="Hand"
+                        Width="280"
+                        Margin="10"                         FontFamily="Japanese"                                                 FontSize="16"
+                        FontStyle="Italic"
+                        x:Name="txtUsuario"
+                        materialDesign:HintAssist.Hint="Ingrese Usuario"
+                        materialDesign:HintAssist.Foreground="white"
+                        materialDesign:TextFieldAssist.UnderlineBrush="white"
+                        Foreground="white"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"                        materialDesign:HintAssist.IsFloating="True"
+                        materialDesign:TextFieldAssist.HasClearButton="True"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon                             Kind="Key"                             Foreground="white"                             VerticalAlignment="Bottom"                             Margin="0,18"                             Width="20"/>
+                        <PasswordBox                             Cursor="Hand"                            x:Name="txtPassword"                             Width="280"                             Foreground="white"                             FontStyle="Italic"                            materialDesign:HintAssist.Hint="Password"                             materialDesign:HintAssist.IsFloating="True"                             materialDesign:HintAssist.Foreground="white"                             materialDesign:TextFieldAssist.UnderlineBrush="white"                             materialDesign:TextFieldAssist.HasClearButton="True"                            Margin="10"                             FontFamily="Japanese"                             FontSize="16"                            PreviewTextInput="txtPassword_PreviewTextInput"/>
+                        <StackPanel                             PreviewMouseDown="ShowPassword_PreviewMouseDown"                             PreviewMouseUp="ShowPassword_PreviewMouseUp"                             MouseLeave="ShowPassword_MouseLeave"                             Background="Transparent"                             Width="30">                            <materialDesign:PackIcon                                 Cursor="Hand"                                x:Name="OpenEye"                                 Kind="Eye"                                 Foreground="white"                                Height="20"                                Width="30"                                 VerticalAlignment="Center"                                 HorizontalAlignment="Center"                                 Margin="0 20"/>                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock                     x:Name="PasswordUnmask"                     Foreground="white"                     Text="{Binding}" 
+                    Margin="30,0,0,0"/>
+                    <TextBlock                             x:Name="txtErrorPass"                             Foreground="Red"                             Text="{Binding}"                              Width="250"                             Height="17"/>
+                </StackPanel>
+
+                <!--#region btnLogin-->
+                <StackPanel 
+                    VerticalAlignment="Center" 
+                    Margin="5">
+                    <Button                                        
+                        materialDesign:ButtonAssist.CornerRadius="22"                                                      
+                        FontFamily="Japanese">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
+                                <Style.Triggers>
+                                    <Trigger  Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#00bcd4" />
+                                        <Setter Property="BorderBrush" Value="#62efff" />
+                                        <Setter Property="BorderThickness" Value="2" />
+                                        <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth5" />
+                                        <Setter Property="Width" Value="260" />
+                                        <Setter Property="Height" Value="50" />
+                                        <Setter Property="Foreground" Value="White" />
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="False">
+                                        <Setter Property="BorderBrush" Value="#00bcd4" />
+                                        <Setter Property="Background" Value="#008ba3" />
+                                        <Setter Property="BorderThickness" Value="2" />
+                                        <Setter Property="Width" Value="250" />
+                                        <Setter Property="Height" Value="45" />
+                                        <Setter Property="Foreground" Value="DarkGray" />
+                                        <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth3" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <TextBlock
+                    Text="Acceder" 
+                    FontStyle="Italic" 
+                    FontSize="18" 
+                    FontWeight="Bold"/>
+                    </Button>
+                </StackPanel>
+                <!--#endregion-->
+            </StackPanel>
+        
+    </Grid>
+
+</UserControl>

@@ -22,52 +22,28 @@ namespace TurismoReal.App
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
-        private void txtPassword_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        internal void SwitchScreen(object sender)
         {
+            var screen = ((UserControl)sender);
 
-        }
-
-        private void ShowPassword_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            ShowPasswordFunction();
-
-        }
-
-        private void ShowPassword_PreviewMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            HidePasswordFunction();
-
-        }
-
-        private void ShowPassword_MouseLeave(object sender, MouseEventArgs e)
-        {
-            HidePasswordFunction();
-
-        }
-
-        private void ShowPasswordFunction()
-        {
-            if (txtPassword.Password != "")
+            if (screen != null)
             {
-                PasswordUnmask.Visibility = Visibility.Visible;
-                PasswordUnmask.Text = String.Format("Su Contraseña es: {0}", txtPassword.Password);
-                OpenEye.Kind = MaterialDesignThemes.Wpf.PackIconKind.EyeOff;
-                var bc = new BrushConverter();
-                OpenEye.Foreground = (Brush)bc.ConvertFrom("#FFFFFF");
+                PanelMain.Children.Clear();
+                PanelMain.Children.Add(screen);                
+            }
+        }        
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            UserControlLogin screen = new UserControlLogin();
+            if (screen != null)
+            {
+                PanelMain.Children.Clear();
+                PanelMain.Children.Add(screen);
             }
         }
-        private void HidePasswordFunction()
-        {
-            PasswordUnmask.Visibility = Visibility.Hidden;
-            txtPassword.Visibility = Visibility.Visible;
-            OpenEye.Kind = MaterialDesignThemes.Wpf.PackIconKind.Eye;
-            var bc = new BrushConverter();
-            OpenEye.Foreground = (Brush)bc.ConvertFrom("#FFFFFF");
-        }
-
-
     }
 }

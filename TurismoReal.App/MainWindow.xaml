@@ -5,58 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TurismoReal.App"
         mc:Ignorable="d"
-        Title="Bienvenido a Turismo Real" Height="450" Width="800"
+        Title="Bienvenido a Turismo Real"         
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Icon="Recursos/hotel.ico">
-
-    <Grid Background="#3F59D9" >
-        <!--#region login -->
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel Orientation="Horizontal">
-                <materialDesign:PackIcon                             Kind="Account"                             Foreground="White"                             VerticalAlignment="Bottom"                             Margin="0,18"                             Width="20"                             Height="17"/>
-                <TextBox
-                    Width="280"
-                    Margin="10"                     FontFamily="Japanese"                     FontSize="16"
-                    FontStyle="Italic"
-                    x:Name="txtUsuario"
-                    materialDesign:HintAssist.Hint="Ingrese Usuario"
-                    materialDesign:HintAssist.Foreground="White"
-                    materialDesign:TextFieldAssist.UnderlineBrush="White"
-                    Foreground="White"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"                    materialDesign:HintAssist.IsFloating="True"
-                    materialDesign:TextFieldAssist.HasClearButton="True"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
-                <materialDesign:PackIcon                             Kind="Key"                             Foreground="White"                             VerticalAlignment="Bottom"                             Margin="0,18"                             Width="20"/>
-                <PasswordBox                             x:Name="txtPassword"                             Width="280"                             Foreground="White"                             FontStyle="Italic"                            materialDesign:HintAssist.Hint="Password"                             materialDesign:HintAssist.IsFloating="True"                             materialDesign:HintAssist.Foreground="White"                             materialDesign:TextFieldAssist.UnderlineBrush="White"                             materialDesign:TextFieldAssist.HasClearButton="True"                            Margin="10"                             FontFamily="Japanese"                             FontSize="16"                            PreviewTextInput="txtPassword_PreviewTextInput"/>
-
-                <StackPanel                             PreviewMouseDown="ShowPassword_PreviewMouseDown"                             PreviewMouseUp="ShowPassword_PreviewMouseUp"                             MouseLeave="ShowPassword_MouseLeave"                             Background="#3F59D9"                             Width="30">                    <materialDesign:PackIcon                                 x:Name="OpenEye"                                 Kind="Eye"                                 Foreground="White"                                                                Width="26"                                 VerticalAlignment="Center"                                 HorizontalAlignment="Center"                                 Margin="0 20"/>                </StackPanel>
-            </StackPanel>
-            <TextBlock                     x:Name="PasswordUnmask"                     Foreground="White"                     Text="{Binding}" 
-                    Margin="30,0,0,0"/>
-            <TextBlock                             x:Name="txtErrorPass"                             Foreground="Red"                             Text="{Binding}"                              Width="250"                             Height="17"/>
-        </StackPanel>
-        <!--#endregion login-->
-
-        <!--#region btnLogin-->
-        <StackPanel Margin="0,220,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <Button
-                Background="#3F59D9"
-                Width="250"
-                Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                Height="60"
-                materialDesign:ButtonAssist.CornerRadius="22"
-                ToolTip="MaterialDesignRaisedDarkButton"
-                materialDesign:ShadowAssist.ShadowDepth="Depth5"
-                BorderBrush="Black" BorderThickness="4"
-                FontFamily="Japanese">
-                <TextBlock
-                Text="Acceder" FontStyle="Italic" FontSize="18" FontWeight="Bold"/>
-            </Button>
-        </StackPanel>
-        <!--#endregion-->
-
+        Icon="Recursos/hotel.ico"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Loaded="MainWindow_Loaded">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush x:Name="imgBackground" ImageSource="Recursos/background_4.png"/>
+        </Grid.Background>
+        <Viewbox>
+            <StackPanel x:Name="PanelMain"/>
+        </Viewbox>
     </Grid>
+
 </Window>
