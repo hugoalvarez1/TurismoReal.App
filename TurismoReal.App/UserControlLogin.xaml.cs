@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TurismoReal.DataAccess.Entities;
 
 namespace TurismoReal.App
 {
@@ -69,6 +70,36 @@ namespace TurismoReal.App
             OpenEye.Kind = MaterialDesignThemes.Wpf.PackIconKind.Eye;
             var bc = new BrushConverter();
             OpenEye.Foreground = (Brush)bc.ConvertFrom("#FFFFFF");
+        }
+
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            string userName = string.Empty;
+            string pass = string.Empty;
+
+            try
+            {
+                userName = txtUsuario.Text;
+                pass = txtPassword.Password;
+
+
+
+                if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(pass))
+                {
+                    ContextoDAO.UserName = userName;
+                    ContextoDAO.Cargo = "Administrador";
+                    
+                    AppTurismoWindow app = new AppTurismoWindow();
+                    app.Show();
+
+                    MainWindow mainInstance = (MainWindow)Application.Current.MainWindow;
+                    mainInstance.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

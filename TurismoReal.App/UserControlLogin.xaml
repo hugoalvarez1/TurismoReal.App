@@ -83,7 +83,8 @@
                     Margin="5">
                     <Button                                        
                         materialDesign:ButtonAssist.CornerRadius="22"                                                      
-                        FontFamily="Japanese">
+                        FontFamily="Japanese"
+                        Click="BtnLogin_Click">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
                                 <Style.Triggers>
