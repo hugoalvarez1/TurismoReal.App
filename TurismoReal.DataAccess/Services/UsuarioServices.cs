@@ -8,9 +8,9 @@ using TurismoReal.DataAccess.DAL;
 using TurismoReal.DataAccess.Entities;
 using TurismoReal.DataAccess.Services;
 
-namespace TurismoReal.DataAccess
+namespace TurismoReal.DataAccess.Services
 {
-   public class UsuarioServices : IUsuarioServices
+    public class UsuarioServices : IUsuarioServices
     {
         #region propiedades privadas 
         //instanciar propiedades 
@@ -20,31 +20,30 @@ namespace TurismoReal.DataAccess
         #endregion
 
         #region singleton 
-
         //contructor sun parametros
+        private UsuarioServices()
+        {
+        }
 
-        private UsuarioServices() { }
-        
         //metodo de instanciar la clase para mantener en memoria
-        public static UsuarioServices getInstance ()
+        public static UsuarioServices GetInstance()
         {
             if (UsuarioServices.Instance == null)
                 UsuarioServices.Instance = new UsuarioServices();
-           
-            return UsuarioServices.Instance ;
-        }
 
+            return UsuarioServices.Instance;
+        }
         #endregion
 
         // metodo obneter todos usuarios de la tabla login
 
-        public List<UsuarioDTO> GetAllUsuario() 
+        public List<UsuarioDTO> GetAllUsuario()
         {
             List<UsuarioDTO> lstUsuario = null;
 
             try
             {
-                using (dbContext = new hostelEntities()) 
+                using (this.dbContext = new hostelEntities())
                 {
 
                     var lstResultado = (from us in this.dbContext.admin
@@ -58,7 +57,7 @@ namespace TurismoReal.DataAccess
                                             reg_date = us.reg_date,
                                             updation_date = us.updation_date
                                         }).ToList();
-                    
+
                     lstUsuario = new List<UsuarioDTO>(lstResultado);
 
 
@@ -71,20 +70,20 @@ namespace TurismoReal.DataAccess
                 throw ex;
 
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
 
                 throw ex;
-            
+
             }
 
             return lstUsuario;
-        
+
         }
-        
-        
 
 
 
-   }
+
+
+    }
 }

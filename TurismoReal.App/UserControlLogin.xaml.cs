@@ -27,7 +27,7 @@ namespace TurismoReal.App
         {
             get 
             {
-                return UsuarioServices.getInstance();
+                return UsuarioServices.GetInstance();
             
             }
         }
@@ -91,6 +91,8 @@ namespace TurismoReal.App
             {
                 userName = txtUsuario.Text;
                 pass = txtPassword.Password;
+
+                // obtener al usuario que se logeo en la app, y si existe enviarlo a la sgte visto sino enviarle un mensaje de usuario invaliso
 
 
 
