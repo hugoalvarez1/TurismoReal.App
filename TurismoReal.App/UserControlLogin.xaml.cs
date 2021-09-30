@@ -92,12 +92,20 @@ namespace TurismoReal.App
                 userName = txtUsuario.Text;
                 pass = txtPassword.Password;
 
+                var objUsuario = new UsuarioDTO();
+                objUsuario.username = userName;
+                objUsuario.password = pass;
+
+                //servicio usuarioservicemosel.getusuarioCredencuakes(pass, password);
+                //public usuariodto getusuarioCredencuakes(straing pass, string password){}
+                //servicio usuarioservicemosel.getusuarioCredencuakes(objUsuario);
+                //public usuariodto getusuarioCredencuakes(UsuarioDTO filterUser){}
                 // obtener al usuario que se logeo en la app, y si existe enviarlo a la sgte visto sino enviarle un mensaje de usuario invaliso
-
-
 
                 if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(pass))
                 {
+                    //var objresultUrario = servicio usuarioservicemosel.getusuarioCredencuakes(objUsuario);
+                    //if(objresultUrario != null){
                     ContextoDAO.UserName = userName;
                     ContextoDAO.Cargo = "Administrador";
                     usuarioServiceModel.GetAllUsuario();
@@ -108,8 +116,8 @@ namespace TurismoReal.App
                     MainWindow mainInstance = (MainWindow)Application.Current.MainWindow;
                     mainInstance.Close();
 
-
-
+                    //}
+                    //else{mensaje de usuario o contraseña incoreacta}
                 }
             }
             catch (Exception ex)
