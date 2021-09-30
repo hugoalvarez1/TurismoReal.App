@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TurismoReal.DataAccess;
 using TurismoReal.DataAccess.Entities;
+using TurismoReal.DataAccess.Services;
 
 namespace TurismoReal.App
 {
@@ -21,6 +23,14 @@ namespace TurismoReal.App
     /// </summary>
     public partial class UserControlLogin : UserControl
     {
+        private IUsuarioServices usuarioServiceModel 
+        {
+            get 
+            {
+                return UsuarioServices.getInstance();
+            
+            }
+        }
         public UserControlLogin()
         {
             InitializeComponent();
@@ -88,12 +98,16 @@ namespace TurismoReal.App
                 {
                     ContextoDAO.UserName = userName;
                     ContextoDAO.Cargo = "Administrador";
+                    usuarioServiceModel.GetAllUsuario();
                     
                     AppTurismoWindow app = new AppTurismoWindow();
                     app.Show();
 
                     MainWindow mainInstance = (MainWindow)Application.Current.MainWindow;
                     mainInstance.Close();
+
+
+
                 }
             }
             catch (Exception ex)

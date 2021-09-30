@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="hostelModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="reg_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="updation_date" Type="date" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'def.hostel.adminlog' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="adminlog">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="adminid" />
+            <PropertyRef Name="ip" />
+            <PropertyRef Name="logintime" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="adminid" Type="int" Nullable="false" />
+          <Property Name="ip" Type="varbinary" MaxLength="16" Nullable="false" />
+          <Property Name="logintime" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="courses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="course_code" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="course_sn" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="course_fn" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="posting_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="imagecrud">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TITLE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="IMAGE" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'def.hostel.payment' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="payment">
+          <Property Name="id" Type="int" />
+          <Property Name="title" Type="varchar" MaxLength="5" />
+          <Property Name="fname" Type="varchar" MaxLength="30" />
+          <Property Name="lname" Type="varchar" MaxLength="30" />
+          <Property Name="troom" Type="varchar" MaxLength="30" />
+          <Property Name="tbed" Type="varchar" MaxLength="30" />
+          <Property Name="nroom" Type="int" />
+          <Property Name="cin" Type="date" />
+          <Property Name="cout" Type="date" />
+          <Property Name="ttot" Type="double" />
+          <Property Name="fintot" Type="double" />
+          <Property Name="mepr" Type="double" />
+          <Property Name="meal" Type="varchar" MaxLength="30" />
+          <Property Name="btot" Type="double" />
+          <Property Name="noofdays" Type="int" />
+        </EntityType>-->
+        <EntityType Name="registration">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roomno" Type="int" Nullable="false" />
+          <Property Name="seater" Type="int" Nullable="false" />
+          <Property Name="feespm" Type="int" Nullable="false" />
+          <Property Name="foodstatus" Type="int" Nullable="false" />
+          <Property Name="stayfrom" Type="date" Nullable="false" />
+          <Property Name="duration" Type="int" Nullable="false" />
+          <Property Name="course" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="regno" Type="int" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="middleName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="gender" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="contactno" Type="bigint" Nullable="false" />
+          <Property Name="emailid" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="egycontactno" Type="bigint" Nullable="false" />
+          <Property Name="guardianName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="guardianRelation" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="guardianContactno" Type="bigint" Nullable="false" />
+          <Property Name="corresAddress" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="corresCIty" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="corresState" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="corresPincode" Type="int" Nullable="false" />
+          <Property Name="pmntAddress" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="pmntCity" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="pmnatetState" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="pmntPincode" Type="int" Nullable="false" />
+          <Property Name="postingDate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="updationDate" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rooms">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="seater" Type="int" Nullable="false" />
+          <Property Name="room_no" Type="int" Nullable="false" />
+          <Property Name="fees" Type="int" Nullable="false" />
+          <Property Name="posting_date" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="states">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityContainer Name="hostelModelStoreContainer">
+          <EntitySet Name="admin" EntityType="Self.admin" Schema="hostel" store:Type="Tables" />
+          <EntitySet Name="courses" EntityType="Self.courses" Schema="hostel" store:Type="Tables" />
+          <EntitySet Name="imagecrud" EntityType="Self.imagecrud" Schema="hostel" store:Type="Tables" />
+          <EntitySet Name="registration" EntityType="Self.registration" Schema="hostel" store:Type="Tables" />
+          <EntitySet Name="rooms" EntityType="Self.rooms" Schema="hostel" store:Type="Tables" />
+          <EntitySet Name="states" EntityType="Self.states" Schema="hostel" store:Type="Tables" />
+          <EntitySet Name="adminlog" EntityType="Self.adminlog" store:Type="Tables" store:Schema="hostel">
+            <DefiningQuery>SELECT
+`adminlog`.`id`, 
+`adminlog`.`adminid`, 
+`adminlog`.`ip`, 
+`adminlog`.`logintime`
+FROM `adminlog` AS `adminlog`</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hostelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="reg_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="updation_date" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="courses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="course_code" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="course_sn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="course_fn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="posting_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="imagecrud">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TITLE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMAGE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="registration">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roomno" Type="Int32" Nullable="false" />
+          <Property Name="seater" Type="Int32" Nullable="false" />
+          <Property Name="feespm" Type="Int32" Nullable="false" />
+          <Property Name="foodstatus" Type="Int32" Nullable="false" />
+          <Property Name="stayfrom" Type="DateTime" Nullable="false" />
+          <Property Name="duration" Type="Int32" Nullable="false" />
+          <Property Name="course" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="regno" Type="Int32" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="middleName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contactno" Type="Int64" Nullable="false" />
+          <Property Name="emailid" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="egycontactno" Type="Int64" Nullable="false" />
+          <Property Name="guardianName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="guardianRelation" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="guardianContactno" Type="Int64" Nullable="false" />
+          <Property Name="corresAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="corresCIty" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="corresState" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="corresPincode" Type="Int32" Nullable="false" />
+          <Property Name="pmntAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pmntCity" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pmnatetState" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pmntPincode" Type="Int32" Nullable="false" />
+          <Property Name="postingDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="updationDate" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rooms">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="seater" Type="Int32" Nullable="false" />
+          <Property Name="room_no" Type="Int32" Nullable="false" />
+          <Property Name="fees" Type="Int32" Nullable="false" />
+          <Property Name="posting_date" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="states">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="State" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="adminlog">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="adminid" />
+            <PropertyRef Name="ip" />
+            <PropertyRef Name="logintime" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="adminid" Type="Int32" Nullable="false" />
+          <Property Name="ip" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="logintime" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="hostelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admin" EntityType="Self.admin" />
+          <EntitySet Name="courses" EntityType="Self.courses" />
+          <EntitySet Name="imagecrud" EntityType="Self.imagecrud" />
+          <EntitySet Name="registration" EntityType="Self.registration" />
+          <EntitySet Name="rooms" EntityType="Self.rooms" />
+          <EntitySet Name="states" EntityType="Self.states" />
+          <EntitySet Name="adminlog" EntityType="Self.adminlog" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hostelModelStoreContainer" CdmEntityContainer="hostelEntities">
+          <EntitySetMapping Name="admin">
+            <EntityTypeMapping TypeName="hostelModel.admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="reg_date" ColumnName="reg_date" />
+                <ScalarProperty Name="updation_date" ColumnName="updation_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="courses">
+            <EntityTypeMapping TypeName="hostelModel.courses">
+              <MappingFragment StoreEntitySet="courses">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="course_code" ColumnName="course_code" />
+                <ScalarProperty Name="course_sn" ColumnName="course_sn" />
+                <ScalarProperty Name="course_fn" ColumnName="course_fn" />
+                <ScalarProperty Name="posting_date" ColumnName="posting_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="imagecrud">
+            <EntityTypeMapping TypeName="hostelModel.imagecrud">
+              <MappingFragment StoreEntitySet="imagecrud">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registration">
+            <EntityTypeMapping TypeName="hostelModel.registration">
+              <MappingFragment StoreEntitySet="registration">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="roomno" ColumnName="roomno" />
+                <ScalarProperty Name="seater" ColumnName="seater" />
+                <ScalarProperty Name="feespm" ColumnName="feespm" />
+                <ScalarProperty Name="foodstatus" ColumnName="foodstatus" />
+                <ScalarProperty Name="stayfrom" ColumnName="stayfrom" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="course" ColumnName="course" />
+                <ScalarProperty Name="regno" ColumnName="regno" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="contactno" ColumnName="contactno" />
+                <ScalarProperty Name="emailid" ColumnName="emailid" />
+                <ScalarProperty Name="egycontactno" ColumnName="egycontactno" />
+                <ScalarProperty Name="guardianName" ColumnName="guardianName" />
+                <ScalarProperty Name="guardianRelation" ColumnName="guardianRelation" />
+                <ScalarProperty Name="guardianContactno" ColumnName="guardianContactno" />
+                <ScalarProperty Name="corresAddress" ColumnName="corresAddress" />
+                <ScalarProperty Name="corresCIty" ColumnName="corresCIty" />
+                <ScalarProperty Name="corresState" ColumnName="corresState" />
+                <ScalarProperty Name="corresPincode" ColumnName="corresPincode" />
+                <ScalarProperty Name="pmntAddress" ColumnName="pmntAddress" />
+                <ScalarProperty Name="pmntCity" ColumnName="pmntCity" />
+                <ScalarProperty Name="pmnatetState" ColumnName="pmnatetState" />
+                <ScalarProperty Name="pmntPincode" ColumnName="pmntPincode" />
+                <ScalarProperty Name="postingDate" ColumnName="postingDate" />
+                <ScalarProperty Name="updationDate" ColumnName="updationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rooms">
+            <EntityTypeMapping TypeName="hostelModel.rooms">
+              <MappingFragment StoreEntitySet="rooms">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="seater" ColumnName="seater" />
+                <ScalarProperty Name="room_no" ColumnName="room_no" />
+                <ScalarProperty Name="fees" ColumnName="fees" />
+                <ScalarProperty Name="posting_date" ColumnName="posting_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="states">
+            <EntityTypeMapping TypeName="hostelModel.states">
+              <MappingFragment StoreEntitySet="states">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="adminlog">
+            <EntityTypeMapping TypeName="hostelModel.adminlog">
+              <MappingFragment StoreEntitySet="adminlog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="adminid" ColumnName="adminid" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="logintime" ColumnName="logintime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
