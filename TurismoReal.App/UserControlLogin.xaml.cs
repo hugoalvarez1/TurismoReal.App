@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using TurismoReal.DataAccess;
 using TurismoReal.DataAccess.Entities;
 using TurismoReal.DataAccess.Services;
+using MySql.Data.MySqlClient;
 
 namespace TurismoReal.App
 {
@@ -23,7 +24,7 @@ namespace TurismoReal.App
     /// </summary>
     public partial class UserControlLogin : UserControl
     {
-        private IUsuarioServices usuarioServiceModel 
+        private IUsuarioServices UsuarioServiceModel 
         {
             get 
             {
@@ -86,21 +87,41 @@ namespace TurismoReal.App
         {
             string userName = string.Empty;
             string pass = string.Empty;
+            
+            //cadena de conexion
+            MySqlConnection conectar = new MySqlConnection("server=hosteldatabase.mysql.database.azure.com; database= hostel; Uid= hostel@hosteldatabase; pwd=hotel1234!;");
+            conectar.Open();
+            MySqlCommand codigo = new MySqlCommand();
+            MySqlConnection conectarse = new MySqlConnection();
+            codigo.Connection = conectar;
 
+            codigo.CommandText = ("select * from admin where username ='" + txtUsuario.Text + "'and password = '" + txtPassword.Password + "' ");
+            MySqlDataReader leer = codigo.ExecuteReader();
+            if (leer.Read())
+            {
+
+                MessageBox.Show("Bienvenido");
+
+            }
+            else 
+            {
+                MessageBox.Show("Usuario o contraseña incorrecta");
+            }
+            
             try
             {
-                userName = txtUsuario.Text;
+                userName = txtUsuario.Text; 
                 pass = txtPassword.Password;
 
                 // obtener al usuario que se logeo en la app, y si existe enviarlo a la sgte visto sino enviarle un mensaje de usuario invaliso
-
+                // tarea poner mensaje de rellenar textos
 
 
                 if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(pass))
                 {
                     ContextoDAO.UserName = userName;
                     ContextoDAO.Cargo = "Administrador";
-                    usuarioServiceModel.GetAllUsuario();
+                    UsuarioServiceModel.GetAllUsuario();
                     
                     AppTurismoWindow app = new AppTurismoWindow();
                     app.Show();
@@ -116,6 +137,7 @@ namespace TurismoReal.App
             {
 
             }
+            conectar.Close();
         }
     }
 }
