@@ -118,7 +118,55 @@
                 </StackPanel>
                 <!--#endregion-->
             </StackPanel>
-        
+
+        <!--#region modalWait-->
+        <materialDesign:DialogHost 
+                    IsOpen="False" 
+                    x:Name="modalWait" 
+                    BorderBrush="{x:Null}"
+                    Opacity="0">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Background="Transparent">
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel 
+                                Margin="0, 0, 0, 30" 
+                                Orientation="Vertical"
+                                Width="50" 
+                                Height="10" 
+                                Grid.Row="0" 
+                                Grid.Column="0">
+                        <ProgressBar 
+                                    x:Name="pb1" 
+                                    Style="{StaticResource MaterialDesignCircularProgressBar}" 
+                                    Value="0" 
+                                    IsIndeterminate="True" 
+                                    Width="auto" 
+                                    Height="Auto" 
+                                    FontWeight="Bold" 
+                                    Foreground="#00bcd4"/>
+                    </StackPanel>
+                    <Grid Grid.Row="1">
+                        <TextBlock 
+                                    TextWrapping="WrapWithOverflow" 
+                                    FontSize="11"
+                                    Text="Por favor espere ..." 
+                                    TextAlignment="Center" 
+                                    FontWeight="Bold" 
+                                    Margin="5" 
+                                    Grid.Column="0" 
+                                    Foreground="Black"/>
+                    </Grid>
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+        <!--#endregion modalWait-->
+
     </Grid>
 
 </UserControl>

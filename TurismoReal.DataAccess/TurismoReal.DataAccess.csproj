@@ -98,6 +98,7 @@
     <Compile Include="DAL\states.cs">
       <DependentUpon>HostelModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\BaseDTO.cs" />
     <Compile Include="Entities\ContextoDAO.cs" />
     <Compile Include="Entities\UsuarioDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -9,7 +9,16 @@ namespace TurismoReal.DataAccess.Services
 {
     public interface IUsuarioServices
     {
-        List<UsuarioDTO> GetAllUsuario();
-
+        /// <summary>
+        /// Metodo para obtener una lista de todos los usuarios de DB
+        /// </summary>
+        /// <returns></returns>
+        BaseDTO<List<UsuarioDTO>> GetAllUsuario();
+        /// <summary>
+        /// Metodo para obtener si el registros existe en DB
+        /// </summary>
+        /// <param name="userFilter"></param>
+        /// <returns></returns>
+        BaseDTO<UsuarioDTO> GetUsuarioByCredenciales(UsuarioDTO userFilter);
     }
 }
