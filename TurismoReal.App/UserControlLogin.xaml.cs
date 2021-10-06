@@ -57,20 +57,22 @@ namespace TurismoReal.App
                 if (!string.IsNullOrEmpty(username) || !string.IsNullOrEmpty(pass))
                 {
                     var userFilterObj = new UsuarioDTO();
-                    userFilterObj.username = username;
-                    userFilterObj.password = pass;
+                    userFilterObj.Usuario1 = username;
+                    userFilterObj.Usuario_password = pass;
                     //Credenciales de acceso                    
                     //user: admin
                     //pass: Test@1234
+
+                    //var userDb1 = UsuarioServiceModel.GetAllUsuario();
 
                     //Enviamos el objeto al servicio
                     var userDb = UsuarioServiceModel.GetUsuarioByCredenciales(userFilterObj);
 
                     if (userDb.HasValue)
                     {
-                        ContextoDAO.Id = userDb.Value.id;
-                        ContextoDAO.UserName = userDb.Value.username;
-                        ContextoDAO.Cargo = "Administrador";
+                        ContextoDAO.Id = userDb.Value.Id_Usuario;
+                        ContextoDAO.UserName = userDb.Value.Usuario1;
+                        ContextoDAO.Cargo = userDb.Value.Descripcion_rol;
 
                         this.Dispatcher.Invoke((Action)(() =>
                         {
@@ -114,9 +116,53 @@ namespace TurismoReal.App
         }
         #endregion
 
+        #region ValidarInputsLogin
+        public bool ValidarInputsLogin()
+        {
+            bool correcto = false;
+
+            try
+            {
+                if (!string.IsNullOrEmpty(txtUsuario.Text) && !string.IsNullOrEmpty(txtPassword.Password))
+                {
+                    correcto = true;
+                    txtErrorUsername.Visibility = Visibility.Hidden;
+                    PasswordUnmask.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    txtErrorUsername.Visibility = Visibility.Visible;
+                    txtErrorUsername.Text = "campo obligatorio";
+                    PasswordUnmask.Visibility = Visibility.Visible;
+                    PasswordUnmask.Text = "campo obligatorio";
+                    PasswordUnmask.Foreground = new SolidColorBrush(Colors.Red);
+                    modalWait.IsOpen = false;
+                }
+            }
+            catch (Exception)
+            {
+                //LogServiceModel.InsertarLogException("UserControlLogin", "ValidarInputsLogin", ex.Message);
+                correcto = false;
+            }
+
+            return correcto;
+        }
+        #endregion
+
         private void txtPassword_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
+            if (txtPassword.Visibility == Visibility.Visible)
+            {
+                PasswordUnmask.Visibility = Visibility.Hidden;
+            }
+        }
 
+        private void txtUsername_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (txtErrorUsername.Visibility == Visibility.Visible)
+            {
+                txtErrorUsername.Visibility = Visibility.Hidden;
+            }
         }
 
         private void ShowPassword_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -143,6 +189,7 @@ namespace TurismoReal.App
             {
                 PasswordUnmask.Visibility = Visibility.Visible;
                 PasswordUnmask.Text = String.Format("Su Contraseña es: {0}", txtPassword.Password);
+                PasswordUnmask.Foreground = new SolidColorBrush(Colors.White);
                 OpenEye.Kind = MaterialDesignThemes.Wpf.PackIconKind.EyeOff;
                 var bc = new BrushConverter();
                 OpenEye.Foreground = (Brush)bc.ConvertFrom("#FFFFFF");
@@ -166,11 +213,13 @@ namespace TurismoReal.App
             try
             {
                 CargarModalEspera();
-
-                await Task.Run(() =>
+                if (ValidarInputsLogin())
                 {
-                    Account();
-                });
+                    await Task.Run(() =>
+                    {
+                        Account();
+                    });
+                }
             }
             catch (Exception ex)
             {
@@ -183,6 +232,6 @@ namespace TurismoReal.App
         public void CargarModalEspera()
         {
             modalWait.IsOpen = true;
-        }
+        }       
     }
 }

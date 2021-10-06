@@ -35,49 +35,49 @@ namespace TurismoReal.DataAccess.Services
         }
         #endregion
 
-        #region GetAllUsuario
-        // metodo obneter todos usuarios de la tabla login
-        public BaseDTO<List<UsuarioDTO>> GetAllUsuario()
-        {
-            BaseDTO<List<UsuarioDTO>> lstUsuario = null;
+        //#region GetAllUsuario
+        //// metodo obneter todos usuarios de la tabla login
+        //public BaseDTO<List<UsuarioDTO>> GetAllUsuario()
+        //{
+        //    BaseDTO<List<UsuarioDTO>> lstUsuario = null;
 
-            try
-            {
-                using (this.dbContext = new hostelEntities())
-                {
+        //    try
+        //    {
+        //        using (this.dbContext = new hostelEntities())
+        //        {
 
-                    var lstResultado = (from us in this.dbContext.admin
-                                        select new UsuarioDTO
+        //            var lstResultado = (from us in this.dbContext.admin
+        //                                select new UsuarioDTO
 
-                                        {
-                                            id = us.id,
-                                            username = us.username,
-                                            email = us.email,
-                                            password = us.password,
-                                            reg_date = us.reg_date,
-                                            updation_date = us.updation_date
-                                        }).ToList();
+        //                                {
+        //                                    id = us.id,
+        //                                    username = us.username,
+        //                                    email = us.email,
+        //                                    password = us.password,
+        //                                    reg_date = us.reg_date,
+        //                                    updation_date = us.updation_date
+        //                                }).ToList();
 
-                    lstUsuario = new BaseDTO<List<UsuarioDTO>>(lstResultado);
+        //            lstUsuario = new BaseDTO<List<UsuarioDTO>>(lstResultado);
 
 
-                }
-            }
-            catch (SqlException Sqlex)
-            {
-                lstUsuario = new BaseDTO<List<UsuarioDTO>>(true, new Exception("Error al intentar obtener listado de Usuarios desde DB", Sqlex));
-            }
-            catch (Exception ex)
-            {
-                lstUsuario = new BaseDTO<List<UsuarioDTO>>(true, new Exception("Error al intentar obtener listado de Usuarios desde DB", ex));
-            }
+        //        }
+        //    }
+        //    catch (SqlException Sqlex)
+        //    {
+        //        lstUsuario = new BaseDTO<List<UsuarioDTO>>(true, new Exception("Error al intentar obtener listado de Usuarios desde DB", Sqlex));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lstUsuario = new BaseDTO<List<UsuarioDTO>>(true, new Exception("Error al intentar obtener listado de Usuarios desde DB", ex));
+        //    }
 
-            return lstUsuario;
+        //    return lstUsuario;
 
-        }
-        #endregion
+        //}
+        //#endregion
 
-        #region GetAllUsuario
+        #region GetUsuarioByCredenciales
         // metodo obneter todos usuarios de la tabla login
         public BaseDTO<UsuarioDTO> GetUsuarioByCredenciales(UsuarioDTO userFilter)
         {
@@ -87,19 +87,29 @@ namespace TurismoReal.DataAccess.Services
             {
                 using (this.dbContext = new hostelEntities())
                 {
-
-                    var objResultado = (from us in this.dbContext.admin
-                                        where us.username == userFilter.username
-                                        && us.password == userFilter.password
+                    var objResultado = (from us in this.dbContext.usuario
+                                        join rl in this.dbContext.rol on us.Id_rol equals rl.Id_rol
+                                        where us.Usuario1 == userFilter.Usuario1
+                                        && us.Usuario_password == userFilter.Usuario_password
+                                        && us.Vigente == true
                                         select new UsuarioDTO
-
                                         {
-                                            id = us.id,
-                                            username = us.username,
-                                            email = us.email,                                            
-                                            reg_date = us.reg_date,
-                                            updation_date = us.updation_date
+                                            Id_Usuario = us.Id_Usuario,
+                                            Usuario1 = us.Usuario1,
+                                            Usuario_creacion = us.Usuario_creacion,                                            
+                                            Fecha_creacion = us.Fecha_creacion,
+                                            Vigente = us.Vigente,
+                                            Descripcion_rol = rl.Descripcion_rol
                                         }).FirstOrDefault();
+                    //select
+                    //        id,
+                    //        username, 
+                    //        email,                                             
+                    //        reg_date,
+                    //        updation_date
+                    //from admin
+                    //where usrname = 'admin'
+                    //and password = 'Test@1234'
 
                     objUsuario = new BaseDTO<UsuarioDTO>(objResultado);
                 }
@@ -117,10 +127,5 @@ namespace TurismoReal.DataAccess.Services
 
         }
         #endregion
-
-
-
-
-
     }
 }

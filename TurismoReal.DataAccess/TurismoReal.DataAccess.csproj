@@ -62,12 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\admin.cs">
-      <DependentUpon>HostelModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\adminlog.cs">
-      <DependentUpon>HostelModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DAL\courses.cs">
       <DependentUpon>HostelModel.tt</DependentUpon>
     </Compile>
@@ -92,14 +86,21 @@
     <Compile Include="DAL\registration.cs">
       <DependentUpon>HostelModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\rol.cs">
+      <DependentUpon>HostelModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DAL\rooms.cs">
       <DependentUpon>HostelModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\states.cs">
       <DependentUpon>HostelModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAL\usuario.cs">
+      <DependentUpon>HostelModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\BaseDTO.cs" />
     <Compile Include="Entities\ContextoDAO.cs" />
+    <Compile Include="Entities\RolDTO.cs" />
     <Compile Include="Entities\UsuarioDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IUsuarioServices.cs" />
