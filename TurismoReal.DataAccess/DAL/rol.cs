@@ -12,11 +12,16 @@ namespace TurismoReal.DataAccess.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class imagecrud
+    public partial class rol
     {
-        public int ID { get; set; }
-        public string TITLE { get; set; }
-        public string DESCRIPTION { get; set; }
-        public string IMAGE { get; set; }
+        public rol()
+        {
+            this.usuario = new HashSet<usuario>();
+        }
+    
+        public int Id_rol { get; set; }
+        public string Descripcion_rol { get; set; }
+    
+        public virtual ICollection<usuario> usuario { get; set; }
     }
 }

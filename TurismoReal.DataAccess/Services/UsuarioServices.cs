@@ -35,55 +35,97 @@ namespace TurismoReal.DataAccess.Services
         }
         #endregion
 
-        // metodo obneter todos usuarios de la tabla login
+        //#region GetAllUsuario
+        //// metodo obneter todos usuarios de la tabla login
+        //public BaseDTO<List<UsuarioDTO>> GetAllUsuario()
+        //{
+        //    BaseDTO<List<UsuarioDTO>> lstUsuario = null;
 
-        public List<UsuarioDTO> GetAllUsuario()
+        //    try
+        //    {
+        //        using (this.dbContext = new hostelEntities())
+        //        {
+
+        //            var lstResultado = (from us in this.dbContext.admin
+        //                                select new UsuarioDTO
+
+        //                                {
+        //                                    id = us.id,
+        //                                    username = us.username,
+        //                                    email = us.email,
+        //                                    password = us.password,
+        //                                    reg_date = us.reg_date,
+        //                                    updation_date = us.updation_date
+        //                                }).ToList();
+
+        //            lstUsuario = new BaseDTO<List<UsuarioDTO>>(lstResultado);
+
+
+        //        }
+        //    }
+        //    catch (SqlException Sqlex)
+        //    {
+        //        lstUsuario = new BaseDTO<List<UsuarioDTO>>(true, new Exception("Error al intentar obtener listado de Usuarios desde DB", Sqlex));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lstUsuario = new BaseDTO<List<UsuarioDTO>>(true, new Exception("Error al intentar obtener listado de Usuarios desde DB", ex));
+        //    }
+
+        //    return lstUsuario;
+
+        //}
+        //#endregion
+
+        #region GetUsuarioByCredenciales
+        // metodo obneter todos usuarios de la tabla login
+        public BaseDTO<UsuarioDTO> GetUsuarioByCredenciales(UsuarioDTO userFilter)
         {
-            List<UsuarioDTO> lstUsuario = null;
+            BaseDTO<UsuarioDTO> objUsuario = null;
 
             try
             {
                 using (this.dbContext = new hostelEntities())
                 {
-
-                    var lstResultado = (from us in this.dbContext.admin
+                    var objResultado = (from us in this.dbContext.usuario
+                                        join rl in this.dbContext.rol on us.Id_rol equals rl.Id_rol
+                                        where us.Usuario1 == userFilter.Usuario1
+                                        && us.Usuario_password == userFilter.Usuario_password
+                                        && us.Vigente == true
                                         select new UsuarioDTO
-
                                         {
-                                            id = us.id,
-                                            username = us.username,
-                                            email = us.email,
-                                            password = us.password,
-                                            reg_date = us.reg_date,
-                                            updation_date = us.updation_date
-                                        }).ToList();
+                                            Id_Usuario = us.Id_Usuario,
+                                            Usuario1 = us.Usuario1,
+                                            Usuario_creacion = us.Usuario_creacion,                                            
+                                            Fecha_creacion = us.Fecha_creacion,
+                                            Vigente = us.Vigente,
+                                            Descripcion_rol = rl.Descripcion_rol
+                                        }).FirstOrDefault();
+                    //select
+                    //        id,
+                    //        username, 
+                    //        email,                                             
+                    //        reg_date,
+                    //        updation_date
+                    //from admin
+                    //where usrname = 'admin'
+                    //and password = 'Test@1234'
 
-                    lstUsuario = new List<UsuarioDTO>(lstResultado);
-
-
+                    objUsuario = new BaseDTO<UsuarioDTO>(objResultado);
                 }
-
             }
-            catch (SqlException ex)
+            catch (SqlException Sqlex)
             {
-
-                throw ex;
-
+                objUsuario = new BaseDTO<UsuarioDTO>(true, new Exception("Error al intentar obtener Usuarios desde DB", Sqlex));
             }
             catch (Exception ex)
             {
-
-                throw ex;
-
+                objUsuario = new BaseDTO<UsuarioDTO>(true, new Exception("Error al intentar obtener  de Usuarios desde DB", ex));
             }
 
-            return lstUsuario;
+            return objUsuario;
 
         }
-
-
-
-
-
+        #endregion
     }
 }

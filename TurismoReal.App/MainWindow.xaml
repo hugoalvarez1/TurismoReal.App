@@ -8,8 +8,7 @@
         Title="Bienvenido a Turismo Real"         
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Icon="Recursos/hotel.ico"
-        WindowStartupLocation="CenterScreen"
-        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"        
         Loaded="MainWindow_Loaded">
     <Grid>
         <Grid.Background>

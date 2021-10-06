@@ -4,14 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f6a940fb55dc40f9af902fdbea70ec0f" Name="Diagram1" ZoomLevel="33">
-        <EntityTypeShape EntityType="hostelModel.admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="f6a940fb55dc40f9af902fdbea70ec0f" Name="Diagram1" ZoomLevel="108">
         <EntityTypeShape EntityType="hostelModel.courses" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="hostelModel.imagecrud" Width="1.5" PointX="0.875" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="hostelModel.registration" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="hostelModel.rooms" Width="1.5" PointX="4.875" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="hostelModel.states" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="hostelModel.adminlog" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hostelModel.rol" Width="1.5" PointX="5.375" PointY="7.375" />
+        <EntityTypeShape EntityType="hostelModel.usuario" Width="1.5" PointX="7.625" PointY="7" />
+        <AssociationConnector Association="hostelModel.usuario_ibfk_1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

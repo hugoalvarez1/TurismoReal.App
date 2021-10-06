@@ -8,12 +8,14 @@ namespace TurismoReal.DataAccess.Entities
 {
    public class UsuarioDTO
     {
-        public int id { get; set; }
-        public string username { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public System.DateTime reg_date { get; set; }
-        public System.DateTime updation_date { get; set; }
+        public int Id_Usuario { get; set; }
+        public string Usuario1 { get; set; }
+        public string Usuario_password { get; set; }
+        public Nullable<System.DateTime> Fecha_creacion { get; set; }
+        public string Usuario_creacion { get; set; }
+        public Nullable<bool> Vigente { get; set; }
+        public Nullable<int> Id_rol { get; set; }
+        public string Descripcion_rol { get; set; }
 
     }
 }

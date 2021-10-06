@@ -86,9 +86,20 @@
     <Compile Include="AppTurismoWindow.xaml.cs">
       <DependentUpon>AppTurismoWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlCrearUsuario.xaml.cs">
+      <DependentUpon>UserControlCrearUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlEditarUsuario.xaml.cs">
+      <DependentUpon>UserControlEditarUsuario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlLogin.xaml.cs">
       <DependentUpon>UserControlLogin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlMenuItem.xaml.cs">
+      <DependentUpon>UserControlMenuItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\ItemMenu.cs" />
+    <Compile Include="ViewModel\SubItem.cs" />
     <Page Include="AppTurismoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -105,7 +116,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControlCrearUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlEditarUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControlLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlMenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -159,6 +182,10 @@
     <ProjectReference Include="..\TurismoReal.DataAccess\TurismoReal.DataAccess.csproj">
       <Project>{F19FA1C1-349F-4967-9162-AD43EDED7264}</Project>
       <Name>TurismoReal.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TurismoReal.Utils\TurismoReal.Utils.csproj">
+      <Project>{AE2EFEA8-5379-46EB-A663-44591901715F}</Project>
+      <Name>TurismoReal.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
