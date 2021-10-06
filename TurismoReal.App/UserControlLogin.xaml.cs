@@ -94,7 +94,7 @@ namespace TurismoReal.App
             MySqlCommand codigo = new MySqlCommand();
             MySqlConnection conectarse = new MySqlConnection();
             codigo.Connection = conectar;
-
+            //qweqweqweqeqweqwe
             codigo.CommandText = ("select * from admin where username ='" + txtUsuario.Text + "'and password = '" + txtPassword.Password + "' ");
             MySqlDataReader leer = codigo.ExecuteReader();
             if (leer.Read())
