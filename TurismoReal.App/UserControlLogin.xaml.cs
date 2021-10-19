@@ -208,27 +208,7 @@ namespace TurismoReal.App
         private async void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             string userName = string.Empty;
-            string pass = string.Empty;
-            
-            //cadena de conexion
-            MySqlConnection conectar = new MySqlConnection("server=hosteldatabase.mysql.database.azure.com; database= hostel; Uid= hostel@hosteldatabase; pwd=hotel1234!;");
-            conectar.Open();
-            MySqlCommand codigo = new MySqlCommand();
-            MySqlConnection conectarse = new MySqlConnection();
-            codigo.Connection = conectar;
-            //qweqweqweqeqweqwe
-            codigo.CommandText = ("select * from admin where username ='" + txtUsuario.Text + "'and password = '" + txtPassword.Password + "' ");
-            MySqlDataReader leer = codigo.ExecuteReader();
-            if (leer.Read())
-            {
-
-                MessageBox.Show("Bienvenido");
-
-            }
-            else 
-            {
-                MessageBox.Show("Usuario o contraseña incorrecta");
-            }
+            string pass = string.Empty;                        
             
             try
             {
